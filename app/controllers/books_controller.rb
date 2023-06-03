@@ -13,7 +13,7 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = @Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
   
   def update
@@ -38,6 +38,12 @@ class BooksController < ApplicationController
       render :index
     end
   end
+  
+  def destroy
+    @book = Book.find(params[:id])  # データ（レコード）を1件取得
+    @book.destroy  # データ（レコード）を削除
+    redirect_to books_path  # 投稿一覧画面へリダイレクト  
+  end 
 
   private
 
